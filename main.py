@@ -2,8 +2,8 @@ import csv
 from tabulate import tabulate
 import argparse
 
-parser = argparse.ArgumentParser(description="Пример использования argparse")
-parser.add_argument('-f', '--file')
+parser = argparse.ArgumentParser()
+parser.add_argument('-f', '--file', )
 parser.add_argument('-w', '--where')
 parser.add_argument('-a', '--aggregate')
 ps = parser.parse_args()
@@ -65,7 +65,9 @@ if aggregate:
         elif value == 'avg':
             aggregate_dict['avg'] = sum(agg_list) / len(agg_list)
             result.append(aggregate_dict)
+        else:
+            print("Поддерживаютя только операции min/max/avg!")
     else:
-        raise TypeError("Обрабатываются только колонки rating и price!")
+        print("Обрабатываются только колонки rating и price!")
 
 print(tabulate(result, headers='keys', tablefmt="grid"))
