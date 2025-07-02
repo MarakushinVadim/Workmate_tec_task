@@ -1,7 +1,7 @@
 from tabulate import tabulate
 import argparse
 
-from func import aggregate_list, where_list, read_csv
+from utils.func import aggregate_filter, where_filter, read_csv
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
@@ -20,11 +20,11 @@ data = read_csv(path)
 
 if where:
     if data:
-        data = where_list(where, data)
+        data = where_filter(where, data)
 
 
 if aggregate:
     if data:
-        data = aggregate_list(aggregate, data)
+        data = aggregate_filter(aggregate, data)
 
 print(tabulate(data, headers="keys", tablefmt="grid"))

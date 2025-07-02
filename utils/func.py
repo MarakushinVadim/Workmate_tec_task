@@ -15,7 +15,7 @@ def read_csv(path: str) -> list:
     return data
 
 
-def where_list(where: str, data_list: list) -> list:
+def where_filter(where: str, data_list: list) -> list:
     """
     Функция для фильтрации данных
     :param where:строка вида - название столбца=фильтр
@@ -29,20 +29,20 @@ def where_list(where: str, data_list: list) -> list:
             if key in ("price", "rating"):
                 if float(item[key]) > float(value):
                     data.append(item)
-                else:
-                    print(
-                        "Сравнения '>' и '<' доступны только для колонок 'price' и 'rating'"
-                    )
+            else:
+                print(
+                    "Сравнения '>' и '<' доступны только для колонок 'price' и 'rating'"
+                )
 
         elif "<" in where:
             key, value = where.split("<")[0], where.split("<")[1]
             if key in ("price", "rating"):
                 if float(item[key]) < float(value):
                     data.append(item)
-                else:
-                    print(
-                        "Сравнения '>' и '<' доступны только для колонок 'price' и 'rating'"
-                    )
+            else:
+                print(
+                    "Сравнения '>' и '<' доступны только для колонок 'price' и 'rating'"
+                )
 
         elif "=" in where:
             key, value = where.split("=")[0], where.split("=")[1]
@@ -55,7 +55,7 @@ def where_list(where: str, data_list: list) -> list:
     return data
 
 
-def aggregate_list(agg: str, data_list: list) -> list:
+def aggregate_filter(agg: str, data_list: list) -> list:
     """
     Функция агрегации
     :param agg: строка вида - название столбца=вид агрегации
